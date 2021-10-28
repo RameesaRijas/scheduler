@@ -48,15 +48,28 @@ const appointments = [
 
 
 
-export default function Application(props) {
-  const [days, setDays] = useState([]);
+export default function Application() {
+
+  //states
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  });
+
+
+  const setDays = (days) =>  setState(prev => ({ ...prev, days }));
+
+  const setDay = day => setState({ ...state, day });
+  //datafetching
+  useEffect(() => {
+    axios.get('/api/days')
+      .then(res => setDays(res.data));
+  }, [])
 
   const appointmentsData = appointments.map(item => <Appointment  key = {item.id} 
     {...item} />);
-    useEffect(() => {
-      axios.get(`/api/days`)
-        .then(res => setDays([...res.data]));
-    }, [])
+  
 
   return (
     <main className="layout">
@@ -69,9 +82,9 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            value={"Monday"}
-            onChange={setDays}
+            days={state.days}
+            value={state.day}
+            onChange={setDay}
             />
         </nav>
         <img
