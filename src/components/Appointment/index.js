@@ -11,12 +11,10 @@ const SHOW = "SHOW";
 const CREATE = "CREATE";
 
 function Appointment(props) {
-  const { interview, time } = props;
+  const { interview, time , interviewers} = props;
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
-
-  const interviewers = [{}];
 
   return (
         <article className="appointment">
