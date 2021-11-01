@@ -39,8 +39,8 @@ function Appointment(props) {
   const confirmBox = () => {
     transition(CONFIRM);
   }
-  const deleteInterview = () => {
-    transition(DELETING);
+  const deleteInterview = (event) => {
+    transition(DELETING, true);
     cancelInterview(id)
      .then(() => transition(EMPTY))
      .catch(err => transition(ERROR_DELETE, true));

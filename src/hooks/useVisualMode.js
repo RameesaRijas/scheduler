@@ -8,7 +8,10 @@ function useVisualMode(initial) {
   const transition = (newMode, replace = false) => {
     if (newMode !== mode) {
       setMode(newMode);
-      (replace ? newMode = history[history.length - 1] : setHistory([...history, newMode]));
+      (replace ? 
+        newMode = history[history.length - 1] 
+        : setHistory(prev => ([...prev, newMode]))
+      );
     }
     
   }
