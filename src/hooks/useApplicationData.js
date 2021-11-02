@@ -4,7 +4,7 @@ import reducer, {
   SET_DAY,
   SET_APPLICATION_DATA,
   SET_INTERVIEW
-} from "reducer/ApplicationReducer";
+} from "reducer/Application";
 
 
 const useApplicationData = () => {
@@ -38,7 +38,7 @@ const useApplicationData = () => {
   //Websocket
 
   useEffect(() => {
-    const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    const webSocket = new WebSocket("ws://localhost:8001");
 
     webSocket.onmessage = function (event) {
       const data = JSON.parse(event.data);
