@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "components/Appointment/styles.scss";
 import Header from "./Header";
 import Empty from "./Empty";
@@ -36,33 +36,33 @@ function Appointment(props) {
     .catch(err => transition(ERROR_SAVE, true));
   }
 
-  const confirmBox = () => {
-    transition(CONFIRM);
-  }
   const deleteInterview = (event) => {
     transition(DELETING, true);
     cancelInterview(id)
      .then(() => transition(EMPTY))
      .catch(err => transition(ERROR_DELETE, true));
   }
-
-  const editBox = () => {
-    transition(EDIT);
-  }
+//side effects
+  useEffect(() => {
+    if (interview && mode === EMPTY) {
+     transition(SHOW);
+    }
+    if (interview === null && mode === SHOW) {
+     transition(EMPTY);
+    }
+   }, [interview, transition, mode]);
 
   return (
         <article className="appointment">
           <Header time={time}/>
-
-
           {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-          {mode === SHOW && (
-          <Show
-            student={interview.student}
-            interviewer={interview.interviewer}
-            onDelete={confirmBox}
-            onEdit={editBox}
-          />
+          {mode === SHOW && interview && (
+            <Show
+              student={interview.student}
+              interviewer={interview.interviewer}
+              onDelete={() => transition(CONFIRM)}
+              onEdit={() => transition(EDIT)}
+            />
           )}
           { mode === CREATE && (
           <Form interviewers={interviewers} onCancel={() => back()} onSave={save}/>
@@ -100,12 +100,3 @@ function Appointment(props) {
 }
 
 export default Appointment;
-
-{/* <Form student="Rameesa" interviewer = {3} interviewers = {interviewers} onSave={action("onSave")} onCancel={action("onCancel")}/>) */}
-  // .add("Create", () => <Form interviewers = {interviewers} onSave={action("onSave")} onCancel={action("onCancel")}/>)
-
-  // .add("Show", () => <Show student="Lydia Miller-Jones" interviewer = {interviewer} onEdit={action("onEdit")} onDelete={action("onDelete")}/>)
-
-  // <Confirm message="Delete The Appointment?"
-  // onConfirm={action("onConfirm")} onCancel={action("onCancel")}/>)
-  // .add("Status", () => <Status message="Deleting"/>)
