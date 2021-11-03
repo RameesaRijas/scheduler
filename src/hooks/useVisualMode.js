@@ -21,13 +21,6 @@ function useVisualMode(initial) {
       history.pop();
       setHistory([...history]);
       setMode(history[history.length - 1]);
-
-      // let historyNew = [...history];
-      // historyNew.pop();
-      // console.log(history, 'Before', historyNew);
-      // setHistory([ ...historyNew ]);
-      // console.log(history, 'after', historyNew);
-      // setMode(history[history.length - 1]);
     }
   }
 

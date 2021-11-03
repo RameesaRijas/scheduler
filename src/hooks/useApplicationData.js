@@ -38,15 +38,17 @@ const useApplicationData = () => {
   //Websocket
 
   useEffect(() => {
-    const webSocket = new WebSocket("ws://localhost:8001");
+    if (process.env.REACT_APP_WEBSOCKET_URL) {
+      const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
-    webSocket.onmessage = function (event) {
-      const data = JSON.parse(event.data);
-      if (typeof data === "object" && data.type === SET_INTERVIEW) {
-        dispatch(data);
+      webSocket.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        if (typeof data === "object" && data.type === SET_INTERVIEW) {
+          dispatch(data);
+        }
       }
+      return (() => webSocket.close());
     }
-    return (() => webSocket.close());
   }, [dispatch]);
 ///
   const bookInterview = (id, interview) => {
