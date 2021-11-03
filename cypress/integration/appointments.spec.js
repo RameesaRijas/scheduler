@@ -48,16 +48,3 @@ describe("Appointment", () => {
       .should("not.exist");
   });
 })
-
-
-
-// username :lbqozbbolwvwdv
-// password:b18c36152ee30591751498189f7e8f156aa9c5beec0fe8e8052e729d073136ff
-
-// host : ec2-35-169-204-98.compute-1.amazonaws.com
-
-// dadnsamua6eu2d
-
-
-
-// psql -h ec2-35-169-204-98.compute-1.amazonaws.com -p 5432 -U lbqozbbolwvwdv -d dadnsamua6eu2d
