@@ -21,3 +21,51 @@ npm test
 ```sh
 npm run storybook
 ```
+## Dependencies
+
+- axios
+- @testing-library/react-hooks
+- react-test-renderer
+- classNames
+- sass
+
+## Techs Used
+
+- Jest
+- StoryBook
+- Cypress
+- circleCi - Pipeline
+- Heroku - Deploment Api Server
+- Netlify - Deployment
+
+## How Works
+- Can book appointment
+  - Select Time slot Enter Student Name Select available Interviewers click Save.
+
+- Can Edit Appointment
+  - Click Edit button on interview      card for editing an existing interview
+
+- Can Cancel Interview
+  - Click Delete button- pop up a confirmation box - when clicks confirm will delete the interview
+
+
+- Used WebSocket for realtime changes
+
+- Deployed On netlify - https://romantic-wescoff-8bec82.netlify.app
+
+
+
+## ScreenShots
+!["Home screenshot, Listed Interviews, Days, Remaining spots in that perticular day"](https://raw.githubusercontent.com/RameesaRijas/scheduler/master/docs/Home.png)
+
+!["Create New Appointment, input field for typing student name, Interviewer List to Select"](https://raw.githubusercontent.com/RameesaRijas/scheduler/master/docs/Create.png)
+
+!["When hover Edit & Delete Button"](https://raw.githubusercontent.com/RameesaRijas/scheduler/master/docs/Edit%26Delete.png)
+
+!["Validation When Creating and editing Appointment"](https://raw.githubusercontent.com/RameesaRijas/scheduler/master/docs/Validation.png)
+
+!["When Saving User Friendly status loader"](https://raw.githubusercontent.com/RameesaRijas/scheduler/master/docs/Saving.png)
+
+!["When Click Delete confirmation box"](https://raw.githubusercontent.com/RameesaRijas/scheduler/master/docs/Delete.png)
+
+!["Click Confirm status loader with message Deleting"](https://raw.githubusercontent.com/RameesaRijas/scheduler/master/docs/Deleting.png)
