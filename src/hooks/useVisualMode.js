@@ -4,7 +4,8 @@ function useVisualMode(initial) {
 
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]); 
-
+//history saving
+//if true replace the history
   const transition = (newMode, replace = false) => {
     if (newMode !== mode) {
       setMode(newMode);
@@ -15,7 +16,7 @@ function useVisualMode(initial) {
     }
     
   }
-
+//go back to previous history state
   const back = () => {
     if (history.length > 1) {
       history.pop();
