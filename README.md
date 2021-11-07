@@ -1,4 +1,7 @@
 # Interview Scheduler
+A React application that allows the users to add, edit and delete interview appointments across Monday to Friday.
+
+API end point - [scheduler-api](https://github.com/RameesaRijas/scheduler-api) - Go through scheduler-api README for setup
 
 ## Setup
 
