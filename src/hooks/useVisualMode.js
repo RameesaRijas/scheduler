@@ -18,10 +18,11 @@ function useVisualMode(initial) {
   }
 //go back to previous history state
   const back = () => {
-    if (history.length > 1) {
-      history.pop();
-      setHistory([...history]);
-      setMode(history[history.length - 1]);
+    const historyCopy = [...history];
+    if (historyCopy.length > 1) {
+      historyCopy.pop()
+      setMode(historyCopy[historyCopy.length - 1]);
+      setHistory(historyCopy);
     }
   }
 
