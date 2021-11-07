@@ -25,15 +25,21 @@ function Form(props) {
   }
 
   function validate() {
-    if (student.trim() === "") {
+    if (student.trim() === "" && interviewer === null) {
       setError({ 
-        studentNameField:"Student name cannot be blank",})
+        studentNameField:"Student name cannot be blank",
+        InterviewerField:"Please Select Interviewer"})
         return;
     }
     if (interviewer === null) {
         setError({
            InterviewerField:"Please Select Interviewer"});
-        return
+        return;
+    }
+    if (student.trim() === "") {
+      setError({
+        studentNameField:"Student name cannot be blank"});
+      return;
     }
     setError({
       studentNameField:"",
