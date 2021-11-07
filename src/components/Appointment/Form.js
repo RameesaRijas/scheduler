@@ -35,7 +35,7 @@ function Form(props) {
            InterviewerField:"Please Select Interviewer"});
         return
     }
-    setError({...error, 
+    setError({
       studentNameField:"",
       InterviewerField:""});
     onSave(student, interviewer);
