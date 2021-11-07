@@ -5,13 +5,18 @@ import InterviewerList from "components/InterviewerList";
 function Form(props) {
   const { interviewers , onCancel, onSave } = props;
   const [student, setStudent] = useState(props.student || "");
-  const [error, setError] = useState("");
   const [interviewer, setInterviewer] = useState(props.interviewer|| null);
+  const [error, setError] = useState({
+    studentNameField : "",
+    InterviewerField: ""
+  });
+ 
 
   function reset() {
     setStudent("");
     setInterviewer("");
-    setError("");
+    setError({studentNameField:"",
+      InterviewerField:""});
   }
 
   function cancel() {
@@ -20,11 +25,19 @@ function Form(props) {
   }
 
   function validate() {
-    if (student === "") {
-      setError("Student name cannot be blank");
-      return;
+    if (student.trim() === "") {
+      setError({ 
+        studentNameField:"Student name cannot be blank",})
+        return;
     }
-    setError("");
+    if (interviewer === null) {
+        setError({
+           InterviewerField:"Please Select Interviewer"});
+        return
+    }
+    setError({...error, 
+      studentNameField:"",
+      InterviewerField:""});
     onSave(student, interviewer);
   }
 
@@ -42,8 +55,9 @@ function Form(props) {
             data-testid="student-name-input"
           />
         </form>
-        <section className="appointment__validation">{error}</section>
+        <section className="appointment__validation">{error.studentNameField}</section>
         <InterviewerList interviewers={interviewers} value={interviewer} onChange={setInterviewer} />
+        <section className="appointment__validation">{error.InterviewerField}</section>
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
